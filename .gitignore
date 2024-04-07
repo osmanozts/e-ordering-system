@@ -35,3 +35,5 @@ yarn-error.*
 *.tsbuildinfo
 
 lib/supabase.ts
+
+.env
