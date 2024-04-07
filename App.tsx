@@ -3,8 +3,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Session } from "@supabase/supabase-js";
 import { useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
-import { EmailForm } from "./app/screens/email-form";
 import { Home } from "./app/screens/home";
+import { SignIn } from "./app/screens/sign-in";
 import { supabase } from "./lib/supabase";
 
 const Stack = createNativeStackNavigator();
@@ -28,7 +28,7 @@ export default function App() {
         <Stack.Navigator initialRouteName="sign-in">
           <Stack.Screen
             name="sign-in"
-            component={EmailForm}
+            component={SignIn}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>
