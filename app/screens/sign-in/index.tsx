@@ -1,5 +1,5 @@
 import { View } from "react-native";
-import { EmailForm } from "../components/auth/email-form";
+import { EmailForm } from "../../components/auth/email-form";
 
 type Props = {};
 
