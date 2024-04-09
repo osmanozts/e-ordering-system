@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     width: "100%",
+    maxWidth: 600,
   },
   buttonText: {
     color: colors.primaryColor,

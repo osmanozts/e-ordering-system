@@ -13,7 +13,7 @@ export const Home = (props: Props) => {
       <View style={styles.button}>
         <CtaButton
           text="Neue Bestellung"
-          onPress={() => navigation.navigate("kitchen")}
+          onPress={() => navigation.navigate("new-order")}
         />
       </View>
       <View style={styles.button}>
@@ -38,6 +38,7 @@ const styles = StyleSheet.create({
   },
   button: {
     width: "100%",
+    alignItems: "center",
     marginVertical: 24,
     paddingHorizontal: 16,
   },
