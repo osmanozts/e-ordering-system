@@ -9,6 +9,7 @@ import { Kitchen } from "./app/screens/kitchen";
 import { NewOrder } from "./app/screens/new-order";
 import { SignIn } from "./app/screens/sign-in";
 import { supabase } from "./lib/supabase";
+import { TamaguiProvider } from "tamagui";
 
 const Stack = createNativeStackNavigator();
 
@@ -26,40 +27,42 @@ export default function App() {
   }, []);
 
   return (
-    <NavigationContainer>
-      {!session ? (
-        <Stack.Navigator initialRouteName="sign-in">
-          <Stack.Screen
-            name="sign-in"
-            component={SignIn}
-            options={{ headerShown: false }}
-          />
-        </Stack.Navigator>
-      ) : (
-        <Stack.Navigator initialRouteName="home">
-          <Stack.Screen
-            name="home"
-            component={Home}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="new-order"
-            component={NewOrder}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="kitchen"
-            component={Kitchen}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="check-out"
-            component={CheckOut}
-            options={{ headerShown: false }}
-          />
-        </Stack.Navigator>
-      )}
-    </NavigationContainer>
+    <TamaguiProvider>
+      <NavigationContainer>
+        {!session ? (
+          <Stack.Navigator initialRouteName="sign-in">
+            <Stack.Screen
+              name="sign-in"
+              component={SignIn}
+              options={{ headerShown: false }}
+            />
+          </Stack.Navigator>
+        ) : (
+          <Stack.Navigator initialRouteName="home">
+            <Stack.Screen
+              name="home"
+              component={Home}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="new-order"
+              component={NewOrder}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="kitchen"
+              component={Kitchen}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="check-out"
+              component={CheckOut}
+              options={{ headerShown: false }}
+            />
+          </Stack.Navigator>
+        )}
+      </NavigationContainer>
+    </TamaguiProvider>
   );
 }
 
