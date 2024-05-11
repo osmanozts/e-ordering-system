@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { Alert, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { Button, Input } from "react-native-elements";
-import { supabase } from "../../../lib/supabase";
 
 export function EmailForm() {
   const [email, setEmail] = useState("");
@@ -9,15 +8,14 @@ export function EmailForm() {
   const [loading, setLoading] = useState(false);
 
   async function signInWithEmail() {
-    setLoading(true);
-    const { error, data } = await supabase.auth.signInWithPassword({
-      email: email,
-      password: password,
-    });
-    console.log("data: ", data);
-
-    if (error) Alert.alert(error.message);
-    setLoading(false);
+    // setLoading(true);
+    // const { error, data } = await supabase.auth.signInWithPassword({
+    //   email: email,
+    //   password: password,
+    // });
+    // console.log("data: ", data);
+    // if (error) Alert.alert(error.message);
+    // setLoading(false);
   }
 
   return (

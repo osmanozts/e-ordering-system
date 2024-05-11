@@ -1,6 +1,6 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Session } from "@supabase/supabase-js";
+
 import { useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
 import { CheckOut } from "./app/screens/check-out";
@@ -8,23 +8,12 @@ import { Home } from "./app/screens/home";
 import { Kitchen } from "./app/screens/kitchen";
 import { NewOrder } from "./app/screens/new-order";
 import { SignIn } from "./app/screens/sign-in";
-import { supabase } from "./lib/supabase";
 import { TamaguiProvider } from "tamagui";
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-  const [session, setSession] = useState<Session | null>(null);
-
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-    });
-
-    supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
-    });
-  }, []);
+  const [session, setSession] = useState<string | null>(null);
 
   return (
     <TamaguiProvider>

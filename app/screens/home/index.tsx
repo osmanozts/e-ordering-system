@@ -1,6 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
 import { StyleSheet, View } from "react-native";
-import { supabase } from "../../../lib/supabase";
 import { colors } from "../../../theme/color-palette";
 import { CtaButton } from "../../components/buttons/cta-button";
 
@@ -17,13 +16,16 @@ export const Home = (props: Props) => {
         />
       </View>
       <View style={styles.button}>
-        <CtaButton text="Küche" onPress={() => supabase.auth.signOut()} />
+        <CtaButton text="Küche" onPress={() => console.log("Küche pressed")} />
       </View>
       <View style={styles.button}>
-        <CtaButton text="Kasse" onPress={() => supabase.auth.signOut()} />
+        <CtaButton text="Kasse" onPress={() => console.log("Kasse pressed")} />
       </View>
       <View style={styles.button}>
-        <CtaButton text="ausloggen" onPress={() => supabase.auth.signOut()} />
+        <CtaButton
+          text="Ausloggen"
+          onPress={() => console.log("Ausloggen pressed")}
+        />
       </View>
     </View>
   );
