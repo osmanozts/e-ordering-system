@@ -2,11 +2,27 @@ import { useNavigation } from "@react-navigation/native";
 import { StyleSheet, View } from "react-native";
 import { colors } from "../../../theme/color-palette";
 import { CtaButton } from "../../components/buttons/cta-button";
+import {
+  getStorageItem,
+  removeStorageItem,
+} from "../../services/storage/storage";
 
-type Props = {};
+type Props = {
+  onLogout: () => void;
+};
 
-export const Home = (props: Props) => {
+export const Home = ({ onLogout }: Props) => {
   const navigation = useNavigation();
+
+  async function logOut() {
+    const hasAccessToken = await getStorageItem("accessToken");
+
+    if (hasAccessToken) {
+      removeStorageItem("accessToken");
+      onLogout();
+    }
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.button}>
@@ -22,10 +38,7 @@ export const Home = (props: Props) => {
         <CtaButton text="Kasse" onPress={() => console.log("Kasse pressed")} />
       </View>
       <View style={styles.button}>
-        <CtaButton
-          text="Ausloggen"
-          onPress={() => console.log("Ausloggen pressed")}
-        />
+        <CtaButton text="Ausloggen" onPress={logOut} />
       </View>
     </View>
   );

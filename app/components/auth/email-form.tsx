@@ -1,21 +1,32 @@
 import { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { Button, Input } from "react-native-elements";
+import axios from "axios";
+import { setStorageItem } from "../../services/storage/storage";
 
-export function EmailForm() {
+interface EmailFormProps {
+  onLogIn: (newSession: string) => void;
+}
+
+export function EmailForm({ onLogIn }: EmailFormProps) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
-  async function signInWithEmail() {
-    // setLoading(true);
-    // const { error, data } = await supabase.auth.signInWithPassword({
-    //   email: email,
-    //   password: password,
-    // });
-    // console.log("data: ", data);
-    // if (error) Alert.alert(error.message);
-    // setLoading(false);
+  async function signInWithEmail(): Promise<{ accessToken: string }> {
+    try {
+      const response = await axios.post("http://localhost:3000/auth/signIn", {
+        email,
+        password,
+      });
+      const apiResponse = response.data as { accessToken: string };
+      await setStorageItem("accessToken", apiResponse.accessToken);
+      onLogIn(apiResponse.accessToken);
+      return apiResponse;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
   }
 
   return (

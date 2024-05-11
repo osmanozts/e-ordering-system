@@ -1,12 +1,14 @@
 import { View } from "react-native";
 import { EmailForm } from "../../components/auth/email-form";
 
-type Props = {};
+type SignInProps = {
+  onLogIn: (newSession: string) => void;
+};
 
-export const SignIn = (props: Props) => {
+export const SignIn = ({ onLogIn }: SignInProps) => {
   return (
     <View>
-      <EmailForm />
+      <EmailForm onLogIn={onLogIn} />
     </View>
   );
 };
