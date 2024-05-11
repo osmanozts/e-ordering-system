@@ -9,6 +9,7 @@ import { Kitchen } from "./app/screens/kitchen";
 import { NewOrder } from "./app/screens/new-order";
 import { SignIn } from "./app/screens/sign-in";
 import { TamaguiProvider } from "tamagui";
+import config from "./lib/tamagui.config";
 
 const Stack = createNativeStackNavigator();
 
@@ -16,7 +17,7 @@ export default function App() {
   const [session, setSession] = useState<string | null>(null);
 
   return (
-    <TamaguiProvider>
+    <TamaguiProvider config={config}>
       <NavigationContainer>
         {!session ? (
           <Stack.Navigator initialRouteName="sign-in">
